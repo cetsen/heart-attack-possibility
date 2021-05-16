@@ -5,14 +5,17 @@ import pandas as pd
     
     
 def plot_dists(df):
-    # Plot the distribution of each column
+    ''' 
+    Plot the distribution of each column
+    '''
     fig, ax = plt.subplots(4,4, figsize=(12,8))
     
     for i, column_name in enumerate(df.columns):
         sns.histplot(data=df, x=column_name, ax=ax[i//4,i%4])
         
     plt.suptitle('Distributions of features and target')
-    fig.subplots_adjust(top=0.88)
+    fig.subplots_adjust(top=0.88) # space adjustment for title
+    
     fig.tight_layout()
     plt.show()
         
