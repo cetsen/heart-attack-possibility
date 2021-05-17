@@ -6,7 +6,8 @@ import pandas as pd
     
 def plot_dists(df):
     ''' 
-    Plot the distribution of each column
+    Plots the histogram of each column (including the target)
+    Creates 4x4 subplots
     '''
     fig, ax = plt.subplots(4,4, figsize=(12,8))
     
