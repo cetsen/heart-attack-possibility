@@ -91,3 +91,32 @@ def plot_corr_heatmap(df):
     
     sns.heatmap(df.corr(), annot = True, ax=ax, mask=mask, cmap='coolwarm', linewidths=.5) 
     
+    
+def plot_model_comparison(model_perfs):
+    """
+    Plots barplot of model performances with error bars
+    
+    Args:
+        df (pandas DataFrame): dataframe including model type, mean, and standard error
+    Returns:
+        None
+    """
+    model_perfs[['Mean (all)', 'Mean (important)', 'Mean (w/o age)', 'Mean (w/o sex)']
+           ].plot(kind='bar', yerr=model_perfs[['Std (all)', 'Std (important)', 'Std (w/o age)', 'Std (w/osex)']].values.T, 
+                  alpha = 0.5,error_kw=dict(ecolor='k'))
+    
+    # Get the current locations and labels
+    locs, labels = plt.xticks()  
+    
+    # Set text labels and properties
+    plt.xticks([0, 1, 2, 3, 4, 5], model_perfs['Model'], rotation=20)  
+    
+    # Set custom y-axis limits
+    plt.ylim(60,100)
+    
+    # Set axes labels and title
+    plt.xlabel("Models")
+    plt.ylabel("f1-score")
+    plt.title("Model performances")
+    
+    plt.show()
